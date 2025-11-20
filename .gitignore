@@ -1,0 +1,15 @@
+
+
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Java
+*.class
+
+#Secrets
+config.properties
+.env

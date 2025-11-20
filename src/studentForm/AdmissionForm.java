@@ -2,21 +2,29 @@ package studentForm;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class AdmissionForm extends Frame implements ActionListener {
+	
+	
+	String url, user, pass;
     
     Label lblTitle, lblFirstN,lblMidleN, lblEmail, lblPhone, lblCourse, lblStatus;
-    TextField txtName, txtEmail, txtPhone, txtCourse;
+    
+    TextField txtName, txtEmail, txtPhone,textMname, txtCourse;
+    
     Button btnSubmit, btnClear;
 
-    
-    String url = "jdbc:mysql://localhost:3306/student_details"; 
-                  
-    String user = "root"; 
-    String pass = "207429"; 
+   
 
-    public AdmissionForm() {
+    public AdmissionForm(String url, String user, String pass) {
+    	
+    	this.url = url;
+        this.user = user;
+        this.pass = pass;
        
         setTitle("Student Admission Form");
         setSize(600, 800);
@@ -33,6 +41,12 @@ public class AdmissionForm extends Frame implements ActionListener {
         lblFirstN.setBounds(50, 100, 80, 20);
         txtName = new TextField();
         txtName.setBounds(140, 100, 200, 20);
+        
+        lblMidleN = new Label("Middle Name:");
+        lblMidleN.setBounds(50, 110, 80, 20);
+        textMname = new TextField();
+        textMname.setBounds(140, 110, 200, 20);
+        
         
         
 
@@ -101,7 +115,8 @@ public class AdmissionForm extends Frame implements ActionListener {
             // Load MySQL Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Create Connection
+            
+			// Create Connection
             Connection con = DriverManager.getConnection(url, user, pass);
 
             // Prepare Statement
@@ -134,8 +149,25 @@ public class AdmissionForm extends Frame implements ActionListener {
     }
 
     public static void main(String[] args) {
-//        new AdmissionForm();
+
+//    	for config file crediantial variable acccess like name url password 
+    	Properties props = new Properties();
+    	FileInputStream fis = null;
+    	
+    	try {
+    		fis=new FileInputStream("config.properties");
+    		props.load(fis);
+    	}catch(IOException e) {
+    		System.out.println(e.getMessage());
+//    		e.printStackTrace();
+    	}
+    	
+    	String url = props.getProperty("db.url");
         
-    	AdmissionForm a =new AdmissionForm();
+        String user = props.getProperty("db. username");
+        String pass = props.getProperty("db.password");
+    	
+//        create object
+    	AdmissionForm a =new AdmissionForm(url,user,pass);
     }
 }
