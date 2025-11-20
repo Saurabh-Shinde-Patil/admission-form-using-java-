@@ -164,7 +164,7 @@ public class AdmissionForm extends Frame implements ActionListener {
     	
     	String url = props.getProperty("db.url");
         
-        String user = props.getProperty("db. username");
+        String user = props.getProperty("db.username");
         String pass = props.getProperty("db.password");
     	
 //        create object
