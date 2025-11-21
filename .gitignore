@@ -12,4 +12,4 @@ bin/
 
 #Secrets
 config.properties
-.env
+

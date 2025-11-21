@@ -1,3 +1,5 @@
+
+
 package studentForm;
 
 import java.awt.*;
@@ -44,7 +46,7 @@ public class AdmissionForm extends Frame implements ActionListener {
         setTitle("Student Admission Form");
         setSize(700, 900);
         setLayout(null);
-        setBackground(Color.LIGHT_GRAY);
+        setBackground(new Color(255, 250, 205));
         setVisible(true);
 
         lblTitle = new Label("Admission Form");
@@ -87,7 +89,7 @@ public class AdmissionForm extends Frame implements ActionListener {
         add(lblPhone);
         add(txtPhone);
 
-        lblCourse = new Label("Course:");
+        lblCourse = new Label("Branch:");
         lblCourse.setBounds(50, 250, 100, 20);
         txtCourse = new TextField();
         txtCourse.setBounds(160, 250, 200, 20);
@@ -101,7 +103,7 @@ public class AdmissionForm extends Frame implements ActionListener {
         add(lbladdr);
         add(txtaddr);
 
-        /* DOB unchanged */
+//        / DOB 
         lbldob = new Label("Date of Birth:");
         lbldob.setBounds(50, 350, 100, 20);
         add(lbldob);
@@ -121,14 +123,14 @@ public class AdmissionForm extends Frame implements ActionListener {
         chYear.setBounds(300, 350, 80, 20);
         add(chYear);
 
-        /* Gender unchanged */
+//         Gender 
         lblgender = new Label("Gender:");
         lblgender.setBounds(50, 385, 100, 20);
         add(lblgender);
 
         genderGroup = new CheckboxGroup();
 
-        rbMale = new Checkbox("Male", genderGroup, false);
+        rbMale = new Checkbox("Male", genderGroup, true);
         rbMale.setBounds(160, 385, 60, 20);
         add(rbMale);
 
@@ -137,7 +139,7 @@ public class AdmissionForm extends Frame implements ActionListener {
         add(rbFemale);
 
 
-        /* Programming languages unchanged */
+//        Programming languages 
         lblProLang = new Label("Programming Languages:");
         lblProLang.setBounds(50, 420, 200, 20);
         add(lblProLang);
@@ -163,7 +165,7 @@ public class AdmissionForm extends Frame implements ActionListener {
         add(cbPHP);
 
 
-        /* ⭐⭐⭐ UPDATED: MULTI-SELECT LANGUAGES USING LIST ⭐⭐⭐ */
+//        
         lblLangKnow = new Label("Languages Known:");
         lblLangKnow.setBounds(50, 490, 150, 20);
         add(lblLangKnow);
@@ -178,13 +180,13 @@ public class AdmissionForm extends Frame implements ActionListener {
         listLanguagesKnown.setBounds(200, 490, 150, 80);
         add(listLanguagesKnown);
 
-        /* ⭐⭐⭐ TEXTFIELD TO DISPLAY SELECTED LANGUAGES ⭐⭐⭐ */
+//         TEXTFIELD TO DISPLAY SELECTED LANGUAGES
         txtLangKnown = new TextField();
         txtLangKnown.setBounds(160, 580, 300, 25);
         txtLangKnown.setEditable(false);
         add(txtLangKnown);
 
-        /* ⭐⭐⭐ UPDATE TEXTFIELD WHEN USER SELECTS MULTIPLE LANGUAGES ⭐⭐⭐ */
+//        UPDATE TEXTFIELD WHEN USER SELECTS MULTIPLE LANGUAGES 
         listLanguagesKnown.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 updateSelectedLanguages();
@@ -215,7 +217,7 @@ public class AdmissionForm extends Frame implements ActionListener {
     }
 
 
-    /* ⭐⭐⭐ UPDATE TEXTFIELD FOR MULTI-SELECT ⭐⭐⭐ */
+//    UPDATE TEXTFIELD FOR MULTI-SELECT 
     public void updateSelectedLanguages() {
         String[] selected = listLanguagesKnown.getSelectedItems();
 
@@ -263,7 +265,7 @@ public class AdmissionForm extends Frame implements ActionListener {
             if (!prog.isEmpty()) prog = prog.substring(0, prog.length() - 2);
             pst.setString(9, prog);
 
-            /* ⭐⭐⭐ STORE MULTI-SELECT LANGUAGES ⭐⭐⭐ */
+//            STORE MULTI-SELECT LANGUAGES 
             pst.setString(10, txtLangKnown.getText());
 
             int d = Integer.parseInt(chDay.getSelectedItem());
@@ -323,7 +325,7 @@ public class AdmissionForm extends Frame implements ActionListener {
         cbJS.setState(false);
         cbPHP.setState(false);
 
-        /* ⭐⭐⭐ CLEAR ALL SELECTED LANGUAGES ⭐⭐⭐ */
+//       CLEAR ALL SELECTED LANGUAGES 
         listLanguagesKnown.deselect(listLanguagesKnown.getSelectedIndex());
         txtLangKnown.setText("");
     }
@@ -348,6 +350,9 @@ public class AdmissionForm extends Frame implements ActionListener {
         AdmissionForm a = new AdmissionForm(url,user,pass);
     }
 }
+
+
+
 
 
 
